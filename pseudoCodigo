@@ -43,3 +43,12 @@ se não
       z = z.pai;
   senao 
     z = ptf;
+
+w = criarNoh(x, x, NULL, NULL, NULL, 1)
+se(x[l+1] == 0)
+ v = criarNOH(NULL, l+1, z.pai, w, z, 0);
+se nao 
+ v = criarNOH(NULL, l+1, z.pai, z, w, 0);
+
+z.pai = v;
+w.pai = v;
