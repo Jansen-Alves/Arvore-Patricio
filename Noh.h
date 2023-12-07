@@ -2,10 +2,12 @@
 #define NOH_H
 
 typedef struct NO{
-    int p_read;
+    int chave;
+    NO* pai;
     NO* esq;
     NO* dir;
     int folha;
+    
     
 }NO;
 
