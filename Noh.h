@@ -8,8 +8,6 @@ typedef struct NO{
     NO* esq;
     NO* dir;
     int folha;
-    
-    
 }NO;
 
 #endif
