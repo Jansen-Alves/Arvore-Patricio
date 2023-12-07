@@ -2,7 +2,7 @@
 #define NOH_H
 
 typedef struct NO{
-    int chave;
+    char * chave;
     NO* pai;
     NO* esq;
     NO* dir;
