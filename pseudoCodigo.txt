@@ -1,0 +1,18 @@
+Busca(No* raiz, chave, int N)
+pt = raiz
+a = 0
+enquanto a == 0 faça
+ se pt.folha == 1 faça
+   se pt.chave == x faça
+     a = 1;
+   senao
+     a = 2;
+i = pt.reg
+  se i<=n faça
+    se x[i] == 0 faça
+      pt = pt.esq
+    senao 
+      pt = pt.dir
+senao
+  a = 2;
+return pt
