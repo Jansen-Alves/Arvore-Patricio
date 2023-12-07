@@ -17,16 +17,16 @@ senao
   a = 2;
 return pt
 
-inserir(No* raiz, chave, int N)
+inserir(No* raiz, x, int N)
 T = 0;
 pt =raiz;
-pr = busca(raiz, chave, N)
-se pr.chave ==chave
+pr = busca(raiz, x, N)
+se pr.chave == x
  return -1
 
 se pr.folha == 0
  i = pr.reg
- ptf = pt
+ ptf = pr
   enquanto T != 1
     ptf - ptf.esq
     se ptf.folha == 1
@@ -34,7 +34,7 @@ se pr.folha == 0
 se não
   ptf = pr
   c = comprimento(ptf.chave)
-  l = prefixomaior(ptf.chave, chave)
+  l = prefixomaior(ptf.chave, x)
   se l == k || l == c
    return -1;
   z= ptf.pai
