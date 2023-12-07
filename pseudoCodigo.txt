@@ -16,3 +16,30 @@ i = pt.reg
 senao
   a = 2;
 return pt
+
+inserir(No* raiz, chave, int N)
+T = 0;
+pt =raiz;
+pr = busca(raiz, chave, N)
+se pr.chave ==chave
+ return -1
+
+se pr.folha == 0
+ i = pr.reg
+ ptf = pt
+  enquanto T != 1
+    ptf - ptf.esq
+    se ptf.folha == 1
+      T = 1;
+se não
+ptf = pr
+c = comprimento(ptf.chave)
+l = prefixomaior(ptf.chave, chave)
+se l == k || l == c
+ return -1;
+z= ptf.pai
+se z.reg > l+1 faça
+ enquanto z.pai.reg > l+1 faça
+    z = z.pai;
+senao 
+  z = ptf;
