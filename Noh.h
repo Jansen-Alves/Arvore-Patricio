@@ -3,6 +3,7 @@
 
 typedef struct NO{
     char * chave;
+    int reg;
     NO* pai;
     NO* esq;
     NO* dir;
