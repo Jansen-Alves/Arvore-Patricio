@@ -53,7 +53,7 @@ void menu(FILE *meta, FILE *clientes, int modo){
 }
 int main(){
   No *arv = (No *)malloc(sizeof(No));
-    arv = criarNoH(NULL, 1, NULL, NULL, NULL, 0);
+    arv = criarNoH(NULL, 1, NULL, NULL, NULL, -1);
   menu(arv);
   return 0;
 }
