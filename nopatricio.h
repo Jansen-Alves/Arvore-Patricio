@@ -75,7 +75,7 @@ void inserirpat(No* arv, char* x, int n){
     printf("Inserção invalida, chave já existente");
     return -1;
   }
-  if(pr->folha == 0 && pr->esq != NULL && pr->dir !=NULL){
+  if(pr->folha == 0){
      ptf= pr;
     while(T != 1){
       ptf = ptf->esq;
@@ -86,7 +86,7 @@ void inserirpat(No* arv, char* x, int n){
   }else if(pr->folha == 1){
     ptf = pr;
   }
-    if(pr->raiz ==0){
+    if(pr->folha >= 0){
     c = strlen(prf.chave);
     l = maiorprefixo(prf.chave, x);
     if(l == strlen(x) || l == c){
@@ -101,7 +101,7 @@ void inserirpat(No* arv, char* x, int n){
     }else{
       z = ptf;
     }
-    }else if(pr->raiz == 1){
+    }else if(pr->folha == - 1){
         z = arv
         z->reg = 2;
     }
