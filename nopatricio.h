@@ -18,6 +18,14 @@ No *criarNoh(char * chave, char *reg, No*pai, No*esquerdo, No*direito, int val){
     return novo;
 }
 
+int maiorprefixo(char* nomeA, char* nomeB){
+    int i =0;
+    while(nomeA[i] == nomeB[i]){
+        i++;
+    }
+    return 0;
+}
+
 No *buscapat(No* arv, char* x, int n){
     No *novo = arv;
     int chave, i, a = 0;
@@ -67,21 +75,22 @@ void inserirpat(No* arv, char* x, int n){
     printf("Inserção invalida, chave já existente");
     return -1;
   }
-  if(pr.folha == 0){
+  if(pr->folha == 0 && pr->esq != NULL && pr->dir !=NULL){
      ptf= pr;
     while(T != 1){
-      ptf = ptf.esq;
-      if(ptf.folha == 1){
+      ptf = ptf->esq;
+      if(ptf->folha == 1){
         T = 1;
       }
     }
-  }else{
+  }else if(pr->folha == 1){
     ptf = pr;
-   c = strlen(prf.chave);
+  }
+    if(pr->raiz ==0){
+    c = strlen(prf.chave);
     l = maiorprefixo(prf.chave, x);
     if(l == strlen(x) || l == c){
       printf("Inserção inválida. Uma chave é prefixa de outra");
-      
       return -1;
     }
     z = ptf.pai;
@@ -91,6 +100,10 @@ void inserirpat(No* arv, char* x, int n){
       }
     }else{
       z = ptf;
+    }
+    }else if(pr->raiz == 1){
+        z = arv
+        z->reg = 2;
     }
     reg_w = atoi(x);
     w = criarNoh(x, reg_w, NULL,NULL,NULL, 1);
@@ -102,7 +115,7 @@ void inserirpat(No* arv, char* x, int n){
     z.pai = v;
     w.pai = v;
   }
-}
+
 
 void deletar(FILE *hash, FILE *meta, FILE *clientes, int chave){
     int validade = 0, proximo;
