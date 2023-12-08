@@ -55,7 +55,7 @@ No *buscapat(No* arv, char* x, int n){
   return novo;
 } 
 
-void inserir(No* arv, char* x, int n){
+void inserirpat(No* arv, char* x, int n){
   int T, l, c, reg_w;
   No* z;
   No* w;
