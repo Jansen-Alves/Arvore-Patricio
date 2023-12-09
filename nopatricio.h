@@ -17,7 +17,54 @@ No *criarNoh(char * chave, char *reg, No*pai, No*esquerdo, No*direito, int val){
     }
     return novo;
 }
-
+No* ajeitarArv(No* folha){
+    int k, val, lvl;
+    No* z;
+    No* v1;
+    No* sweep;
+    val = 0;
+    k = 1;
+    lvl = 1;
+    z = folha->pai;
+    
+    if(z->folha != -1){
+        if(z->esq == NULL || z->dir == NULL){
+            folha->pai = z->pai;
+            free(z);
+        }
+        else{
+            while(val == 0){
+                z = z->pai; // começa pelo avo da folha
+                if(z->esq == NULL || z->dir == NULL){ //verifica se tem ziguezague
+                    else if(z->pai->esq == NULL || z->pai->dir == NULL){
+                        k++;
+                    }else{
+                        v1 = z;
+                        while(v1->folha != -1){
+                            lvl++;
+                            v1= v1->pai;
+                        }
+                        z = folha->pai;
+                        z->reg = k+lvl;
+                        val = 1;
+                    }
+                }else{
+                    val = 1;
+                }
+            }
+            sweep = folha->pai;
+            v1 = sweep->pai;
+            while(k>0){
+                sweep= v1;
+                v1 = sweep->pai;
+                free(sweep);
+                k--;
+                }
+           z->pai = v1;
+        }
+    }
+    
+}
 int maiorprefixo(char* nomeA, char* nomeB){
     int i =0;
     while(nomeA[i] == nomeB[i]){
