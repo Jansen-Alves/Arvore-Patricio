@@ -17,11 +17,12 @@ No *criarNoh(char * chave, char *reg, No*pai, No*esquerdo, No*direito, int val){
     }
     return novo;
 }
-No* ajeitarArv(No* folha){
-    int k, val, lvl;
+void ajeitarArv(No* folha){
+    int k, val, lvl, lado;
     No* z;
     No* v1;
     No* sweep;
+    
     val = 0;
     k = 1;
     lvl = 1;
@@ -52,15 +53,30 @@ No* ajeitarArv(No* folha){
                     val = 1;
                 }
             }
+            //Processo de liberar da memória os nós descartados do ziguezague
             sweep = folha->pai;
             v1 = sweep->pai;
             while(k>0){
                 sweep= v1;
                 v1 = sweep->pai;
+                if(k == 1){
+                    if(v1->dir == sweep){
+                        lado = 1;
+                    }
+                    else if(v1->esq == sweep){
+                        lado = -1;
+                    }
+                }
                 free(sweep);
                 k--;
                 }
+            
            z->pai = v1;
+            if(lado >0){
+                v1->dir = z;
+            }else{
+                v1->esq = z;
+            }
         }
     }
     
@@ -70,7 +86,7 @@ int maiorprefixo(char* nomeA, char* nomeB){
     while(nomeA[i] == nomeB[i]){
         i++;
     }
-    return 0;
+    return i;
 }
 
 No *buscapat(No* arv, char* x, int n){
@@ -173,6 +189,7 @@ void inserirpat(No* arv, char* x, int n){
         arv = v;
         free(z);
     }
+    ajeitarArv(w);
     printf("chave criada");
   }
 
