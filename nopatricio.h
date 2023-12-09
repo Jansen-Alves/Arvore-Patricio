@@ -73,13 +73,13 @@ void inserirpat(No* arv, char* x, int n){
   No* yf;
   No* pr;
   pr = buscapat(arv, x, n);
-  if(pr.chave == x){
+  if(pr->chave == x){
     printf("Inserção invalida, chave já existente");
     return -1;
   }
   if(pr->folha == 0){
      yf= pr;
-    while(T != 1){
+    while(T > 0){
       yf = yf->esq;
       if(yf->folha == 1){
         T = 1;
@@ -91,7 +91,7 @@ void inserirpat(No* arv, char* x, int n){
   }
     if(yf->folha == 1){
         c = strlen(yf.chave);
-        l = maiorprefixo(prf.chave, x);
+        l = maiorprefixo(yf->chave, x);
     if(l == strlen(x) || l == c){
         printf("Inserção inválida. Uma chave é prefixa de outra");
         return -1;
@@ -108,7 +108,6 @@ void inserirpat(No* arv, char* x, int n){
         z = yf
     }
     reg_w = atoi(x);
-    
     w = criarNoh(x, reg_w, NULL,NULL,NULL, 1);
     if(z->folha > 0){
         if(x[l+1] == 0){
