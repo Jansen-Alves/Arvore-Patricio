@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Noh.h"
+#include "noh.h"
 
 
 No *criarNoh(char * chave, char *reg, No*pai, No*esquerdo, No*direito, int val){
@@ -48,7 +48,9 @@ No *buscapat(No* arv, char* x, int n){
       }
         else if(novo->chave[i] == 1){
           novo = novo->dir;   
-    }
+    }else{
+        a = 2;  
+          }
   }
       else{
         a = 2;
@@ -68,7 +70,7 @@ void inserirpat(No* arv, char* x, int n){
   No* z;
   No* w;
   No* v;
-  No* ptf;
+  No* yf;
   No* pr;
   pr = buscapat(arv, x, n);
   if(pr.chave == x){
@@ -76,44 +78,56 @@ void inserirpat(No* arv, char* x, int n){
     return -1;
   }
   if(pr->folha == 0){
-     ptf= pr;
+     yf= pr;
     while(T != 1){
-      ptf = ptf->esq;
-      if(ptf->folha == 1){
+      yf = yf->esq;
+      if(yf->folha == 1){
         T = 1;
       }
     }
-  }else if(pr->folha == 1){
-    ptf = pr;
   }
-    if(pr->folha >= 0){
-    c = strlen(prf.chave);
-    l = maiorprefixo(prf.chave, x);
+  else if(pr->folha == 1){
+    yf = pr;
+  }
+    if(yf->folha == 1){
+        c = strlen(yf.chave);
+        l = maiorprefixo(prf.chave, x);
     if(l == strlen(x) || l == c){
-      printf("Inserção inválida. Uma chave é prefixa de outra");
-      return -1;
+        printf("Inserção inválida. Uma chave é prefixa de outra");
+        return -1;
     }
-    z = ptf.pai;
-    if(z.reg> l+1){
-      while(z.pai.reg > l+1){
-        z = z.pai;
-      }
+    z = yf->pai;
+    if(z->reg> l+1){
+        while(z->pai->reg > l+1){
+            z = z.pai;
+          }
     }else{
-      z = ptf;
+        z = ptf;
     }
-    }else if(pr->folha == - 1){
-        z = arv
-        z->reg = 2;
+    }else if(yf->folha == - 1){
+        z = yf
     }
     reg_w = atoi(x);
+    
     w = criarNoh(x, reg_w, NULL,NULL,NULL, 1);
-    if(x[l+1] == 0){
-      v = criarNOH(NULL, l+1, z.pai, w, z, 0);
+    if(z->folha > 0){
+        if(x[l+1] == 0){
+          v = criarNOH(NULL, l+1, z.pai, w, z, 0);
+        }else{
+          v = criarNOH(NULL, l+1, z.pai, z, w, 0);
+        }
+        z.pai = v;
+        w.pai = v;
     }else{
-      v = criarNOH(NULL, l+1, z.pai, z, w, 0);
+        if(x[l+1] == 0){
+          v = criarNOH(NULL, l+1, z.pai, w, NULL, -1);
+        }else{
+          v = criarNOH(NULL, l+1, z.pai, NULL, w, -1);
     }
-    z.pai = v;
-    w.pai = v;
+        arv = v;
+        free(z);
+    }
+    printf("chave criada");
   }
 
 
