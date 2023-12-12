@@ -36,7 +36,7 @@ void menu(NO *arv){
             scanf("%s", chave);
             n = strlen(chave);
             novo = buscapat(arv, chave, n);
-            validez(novo->chave, chave, n);
+            validez= comparaChave(novo->chave, chave, n);
             if(validez == -1){
                 printf("Noh não encontrado, busca se encerrou num nó folha incorreto ou num nó interno");
             }
