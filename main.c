@@ -5,10 +5,11 @@
 
 
 void menu(NO *arv){
-    int escolha, n; 
+    int escolha, n;
     char chave[20];
     NO *novo;
 
+    printf("menu adentrado");
     while(1){
         printf("\n-------------Menu-------------\n 1 - Inserção \n 2 - Deletar \n 3 - Busca \n 4- Sair \n -----------------------------");
         printf("\nDigite uma das opcoes acima:");
@@ -19,8 +20,9 @@ void menu(NO *arv){
             printf("Digite o número da chave do cliente que você deseja inserir: \n");
             scanf("%s", chave);
             n = strlen(chave);
+            printf("tamanho da chave %d \n", n);
             inserirpat(arv, chave, n);
-          
+
             //printf("fechando arquivos e ponteiros");
             break;
         case (2):
@@ -42,7 +44,7 @@ void menu(NO *arv){
                 printf("> Chave do nó: %s \n", novo->chave);
             }
             break;
-        case (5):
+        case (4):
             free(novo);
             exit(1);
             break;
@@ -51,13 +53,13 @@ void menu(NO *arv){
             break;
         }
     }
-    
+
 }
 
 
 int main(){
     NO *arv;
-    arv = criarNOh(NULL, 1, NULL, NULL, NULL, -1);
+    arv = criarNOh("null", 1, NULL, NULL, NULL, -1);
     menu(arv);
     return 0;
 }
