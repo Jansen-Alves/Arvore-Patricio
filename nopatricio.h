@@ -90,12 +90,32 @@ void ajeitarArv(NO* folha){
 
 }
 
-int maiorprefixo(char* NOmeA, char* NOmeB){
+int maiorprefixo(char* nomeA, char* noomeB){
     int i =0;
-    while(NOmeA[i] == NOmeB[i]){
+    while(nomeA[i] == nomeB[i]){
         i++;
     }
     return i;
+}
+
+int comparaChave(char* nomeA, char* nomeB, int n){
+    int i, k, m;
+    i = 0;
+    k = 1;
+    m = strlen(nomeA);
+    
+    if(n != m){
+        return -1;
+    }
+    while(k==1 && i < n){
+        if(nomeA[i] == nomeB[i]){
+            i++
+        }
+        else{
+            k = -1;
+        }
+    }
+    return k;
 }
 
 NO *buscapat(NO* arv, char* x, int n){
@@ -107,9 +127,10 @@ NO *buscapat(NO* arv, char* x, int n){
     printf("busca iniciada\n");
     while(a == 0){
       if(novo->folha == 1){
-        chave= atoi(novo->chave);
-        printf("chave int %d\n", chave);
-        if(chave == atoi(x)){
+        strcpy(chave, novo->chave)
+        printf("chave: %s\n", chave);
+        k =(novo->chave, chave, n);
+        if(k == 1){
           a = 1;
         }
         else{
