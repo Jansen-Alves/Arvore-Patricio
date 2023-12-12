@@ -8,7 +8,6 @@ NO *criarNOh(char * chave, int reg, NO*pai, NO*esquerdo, NO*direito, int val){
     NO *novo = (NO *)malloc(sizeof(NO));
     printf("Memoria alocada\n");
     strcpy(novo->chave, chave);
-        printf("nome alocado\n");
         novo->reg = reg;
         novo->pai = NULL;
         novo->esq = NULL;
@@ -101,17 +100,16 @@ int maiorprefixo(char* NOmeA, char* NOmeB){
 
 NO *buscapat(NO* arv, char* x, int n){
     NO *novo = arv;
-    int i, a = 0, k;
-    char chave[20];
+    int chave, i, a = 0, k;
+    
     printf("chave raiz %s \n", novo->chave);
-    printf("chave esquerda da raiz %s\n", novo->esq->chave);
-    printf("chave direita da raiz %s\n", novo->dir->chave);
+    
     printf("busca iniciada\n");
     while(a == 0){
       if(novo->folha == 1){
-        strcpy(chave, novo->chave);
-        printf("chave int %s\n", chave);
-        if(chave == x){
+        chave= atoi(novo->chave);
+        printf("chave int %d\n", chave);
+        if(chave == atoi(x)){
           a = 1;
         }
         else{
@@ -152,7 +150,7 @@ NO *buscapat(NO* arv, char* x, int n){
 
 
 NO* inserirpat(NO* arv, char* x, int n){
-  int T, l, c, reg_w;
+  int T, l, c, reg_w, validez;
   NO* z;
   NO* w;
   NO* v;
@@ -162,7 +160,8 @@ NO* inserirpat(NO* arv, char* x, int n){
 
   l = 0;
   c = 0;
-  if(pr->chave == x){
+  validez = maiorprefixo(pr->chave, x);
+  if(valizez == n){
     printf("Inserção invalida, chave já existente\n");
     return arv;
   }
