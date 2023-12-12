@@ -129,7 +129,7 @@ NO *buscapat(NO* arv, char* x, int n){
       if(novo->folha == 1){
         strcpy(chave, novo->chave)
         printf("chave: %s\n", chave);
-        k =(novo->chave, chave, n);
+        k =(chave, x, n);
         if(k == 1){
           a = 1;
         }
