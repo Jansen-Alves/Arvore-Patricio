@@ -101,15 +101,16 @@ int maiorprefixo(char* NOmeA, char* NOmeB){
 
 NO *buscapat(NO* arv, char* x, int n){
     NO *novo = arv;
-    int chave, i, a = 0;
+    int i, a = 0, k;
+    char chave[20];
     printf("chave raiz %s \n", novo->chave);
-    printf("chave esquerda da raiz %s\n", novo->esq);
-    printf("chave direita da raiz %s\n", novo->dir);
+    printf("chave esquerda da raiz %s\n", novo->esq->chave);
+    printf("chave direita da raiz %s\n", novo->dir->chave);
     printf("busca iniciada\n");
     while(a == 0){
       if(novo->folha == 1){
-        chave = atoi(novo->chave);
-        printf("chave int %d\n", chave);
+        strcpy(chave, novo->chave);
+        printf("chave int %s\n", chave);
         if(chave == x){
           a = 1;
         }
@@ -119,20 +120,24 @@ NO *buscapat(NO* arv, char* x, int n){
     }
       i = novo->reg;
       printf("reg %d e tamanho igual a  %d\n", i, n);
-      i = i-1;
-      if (i<=n){
+      //i = i-1;
+      if (arv->esq == NULL && arv->dir == NULL){
+        a = 2;
+      } else if (i<=n){
         printf("entrou no if com i igual a %d \n", i);
         printf("chave na posicao i eh igual a %c", x[i]);
-        if(x[i] == "0"){
+        //c = (char)x[i];
+        //k = atoi(c);
+        //printf("k = %d", k);
+        if(x[i] == '0'){
           novo = novo->esq;
           printf("Foi para esquerda\n");
-      }
-        else if(x[i] == "1"){
+      } else if(x[i]  == '1'){
           novo = novo->dir;
           printf("Foi para direita\n");
-  }
-      else{
+      } else{
         a = 2;
+      }
     }
 }
   if(a==1){
@@ -143,6 +148,8 @@ NO *buscapat(NO* arv, char* x, int n){
   }
   return novo;
 }
+
+
 
 NO* inserirpat(NO* arv, char* x, int n){
   int T, l, c, reg_w;
@@ -157,7 +164,7 @@ NO* inserirpat(NO* arv, char* x, int n){
   c = 0;
   if(pr->chave == x){
     printf("Inserção invalida, chave já existente\n");
-    return -1;
+    return arv;
   }
   else{
     printf("chave não existente na arvore\n");
@@ -188,7 +195,7 @@ NO* inserirpat(NO* arv, char* x, int n){
         l = maiorprefixo(yf->chave, x);
         if(l == strlen(x) || l == c){
             printf("Inserção inválida. Uma chave é prefixa de outra");
-            return -1;
+            return arv;
         }
         z = yf->pai;
         if(z->reg > l){
@@ -265,5 +272,4 @@ void deletarpat(NO* arv, char* x, int n){
         ajeitarArv(pr);
   }
 }
-
 
