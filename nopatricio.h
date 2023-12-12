@@ -31,7 +31,8 @@ void ajeitarArv(NO* folha){
     k = 1;
     lvl = 1;
     z = folha->pai;
-
+    printf("ajeitando arvore \n");
+    printf("Folha do pai %d", z->folha);
     if(z->folha != -1){
         if(z->esq == NULL || z->dir == NULL){
             folha->pai = z->pai;
@@ -221,6 +222,7 @@ int inserirpat(NO* arv, char* x, int n){
           v = criarNOh("null", l+1, NULL, NULL, w, -1);
           v->dir = w;
     }
+        w->pai = v;
         printf("Noh v criado\n");
         arv = v;
         free(z);
