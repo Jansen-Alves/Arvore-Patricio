@@ -6,7 +6,9 @@
 
 NO *criarNOh(char * chave, int reg, NO*pai, NO*esquerdo, NO*direito, int val){
     NO *novo = (NO *)malloc(sizeof(NO));
+    printf("Memoria alocada");
     strcpy(novo->chave, chave);
+        printf("nome alocado");
         novo->reg = reg;
         if(val == -1){
             novo->pai = NULL;
@@ -20,7 +22,7 @@ NO *criarNOh(char * chave, int reg, NO*pai, NO*esquerdo, NO*direito, int val){
         }
 
         novo->folha = val;
-        printf("\n> NOvo cliente criado\n");
+        printf("\n> Novo cliente criado\n");
 
 
   return novo;
@@ -135,7 +137,7 @@ NO *buscapat(NO* arv, char* x, int n){
     printf("Nó com chave %s encontrado\n", NOvo->chave);
   }
   else{
-    printf("chave não encontrada, retorNO do ultimo nó do caminho feito pela busca");
+    printf("chave não encontrada, retorno do ultimo nó do caminho feito pela busca\n");
   }
   return NOvo;
 }
@@ -149,11 +151,16 @@ int inserirpat(NO* arv, char* x, int n){
   NO* pr;
   pr = buscapat(arv, x, n);
   if(pr->chave == x){
-    printf("Inserção invalida, chave já existente");
+    printf("Inserção invalida, chave já existente\n");
     return -1;
   }
+  else{
+    printf("chave não existente na arvore\n");
+  }
+  printf("A chave tem folha igual ah %d \n", pr->folha);
   if(pr->folha == 0){
-     yf= pr;
+    printf("busca acabou em nó interno\n");
+     yf = pr;
     while(T > 0){
       yf = yf->esq;
       if(yf->folha == 1){
@@ -162,8 +169,14 @@ int inserirpat(NO* arv, char* x, int n){
     }
   }
   else if(pr->folha == 1){
-    yf = pr;
+      printf("busca acabou em folha");
+      yf = pr;
   }
+  else if(pr->folha == -1){
+      printf("só há raiz nessa arvore");
+      yf = pr;
+  }
+
     if(yf->folha == 1){
         c = strlen(yf->chave);
         l = maiorprefixo(yf->chave, x);
@@ -179,7 +192,8 @@ int inserirpat(NO* arv, char* x, int n){
     }else{
         z = yf;
     }
-    }else if(yf->folha == - 1){
+    }else if(pr->folha == - 1){
+        printf("só há raiz da arvore");
         z = yf;
     }
     reg_w = atoi(x);
@@ -206,8 +220,27 @@ int inserirpat(NO* arv, char* x, int n){
 }
 
 
-/*void deletar(FILE *hash, FILE *meta, FILE *clientes, int chave){
+void deletarpat(NO* arv, char* x, int n){
+    int lado;
+    NO* pr;
+    NO* pai;
+    pr = buscapat(arv, x, n);
+    if(pr->chave == x){
+        pai = pr->pai;
+        if(pai->dir == pr){
+            lado = 1;
+        }else if(pai->esq == pr){
+            lado = -1;
+        }
+        free(pr);
 
-}*/
+        if(lado == 1){
+            pr = pai->dir;
+        }else{
+            pr = pai->esq;
+        }
+        ajeitarArv(pr);
+  }
+}
 
 
