@@ -5,27 +5,25 @@
 
 
 NO *criarNOh(char * chave, int reg, NO*pai, NO*esquerdo, NO*direito, int val){
-    NO *NOvo = (NO *)malloc(sizeof(NO));
-    if (val == -1){
-        strcpy(NOvo->chave, chave);
-        NOvo->reg = reg;
-        NOvo->pai = NULL;
-        NOvo->esq = NULL;
-        NOvo->dir = NULL;
-        NOvo->folha = val;
-        NOvo->chave = NULL;
-        printf("\n> NOvo cliente criado\n");
-    } else {
-        strcpy(NOvo->chave, chave);
-        NOvo->reg = reg;
-        NOvo->pai = pai;
-        NOvo->esq = esquerdo;
-        NOvo->dir = direito;
-        NOvo->folha = val;
-        printf("\n> NOvo cliente criado\n");
-    }
+    NO *novo = (NO *)malloc(sizeof(NO));
+    strcpy(novo->chave, chave);
+        novo->reg = reg;
+        if(val == -1){
+            novo->pai = NULL;
+            novo->esq = NULL;
+            novo->dir = NULL;
+        }
+        else{
+            novo->pai = pai;
+            novo->esq = esquerdo;
+            novo->dir = direito;
+        }
 
-  return NOvo;
+        novo->folha = val;
+        printf("\n> NOvo cliente criado\n");
+
+
+  return novo;
 }
 
 void ajeitarArv(NO* folha){
@@ -33,12 +31,12 @@ void ajeitarArv(NO* folha){
     NO* z;
     NO* v1;
     NO* sweep;
-    
+
     val = 0;
     k = 1;
     lvl = 1;
     z = folha->pai;
-    
+
     if(z->folha != -1){
         if(z->esq == NULL || z->dir == NULL){
             folha->pai = z->pai;
@@ -83,7 +81,7 @@ void ajeitarArv(NO* folha){
                 free(sweep);
                 k--;
                 }
-            
+
            z->pai = v1;
             if(lado >0){
                 v1->dir = z;
@@ -92,7 +90,7 @@ void ajeitarArv(NO* folha){
             }
         }
     }
-    
+
 }
 
 int maiorprefixo(char* NOmeA, char* NOmeB){
@@ -106,7 +104,7 @@ int maiorprefixo(char* NOmeA, char* NOmeB){
 NO *buscapat(NO* arv, char* x, int n){
     NO *NOvo = arv;
     int chave, i, a = 0;
-    
+
 
     while(a == 0){
       if(NOvo->folha == 1){
@@ -124,9 +122,9 @@ NO *buscapat(NO* arv, char* x, int n){
           NOvo = NOvo->esq;
       }
         else if(NOvo->chave[i] == 1){
-          NOvo = NOvo->dir;   
+          NOvo = NOvo->dir;
     }else{
-        a = 2;  
+        a = 2;
           }
   }
       else{
@@ -140,7 +138,7 @@ NO *buscapat(NO* arv, char* x, int n){
     printf("chave não encontrada, retorNO do ultimo nó do caminho feito pela busca");
   }
   return NOvo;
-} 
+}
 
 int inserirpat(NO* arv, char* x, int n){
   int T, l, c, reg_w;
@@ -209,7 +207,7 @@ int inserirpat(NO* arv, char* x, int n){
 
 
 /*void deletar(FILE *hash, FILE *meta, FILE *clientes, int chave){
-    
+
 }*/
 
 
