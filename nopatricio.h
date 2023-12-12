@@ -138,7 +138,7 @@ NO *buscapat(NO* arv, char* x, int n){
   return NOvo;
 }
 
-int inserirpat(NO* arv, char* x, int n){
+NO* inserirpat(NO* arv, char* x, int n){
   int T, l, c, reg_w;
   NO* z;
   NO* w;
@@ -215,21 +215,25 @@ int inserirpat(NO* arv, char* x, int n){
         w->pai = v;
     }else{
         printf("criando filhos da raiz\n");
-        if(x[l+1] == 0){
-          v = criarNOh("null", l+1, NULL, w, NULL, -1);
+        if(x[l] == 0){
+          v = criarNOh("nll", l+1, NULL, w, NULL, -1);
           v->esq = w;
         }else{
-          v = criarNOh("null", l+1, NULL, NULL, w, -1);
+          v = criarNOh("nill", l+1, NULL, NULL, w, -1);
           v->dir = w;
     }
         w->pai = v;
-        printf("Noh v criado\n");
+        printf("Noh v criado %s\n", v->chave);
         arv = v;
+        printf("No raiz assimilado %s\n", arv->chave);
         free(z);
+        printf("No raiz assimilado 2 %s\n", arv->chave);
+        return v;
     }
     printf("terminei a alocação");
     ajeitarArv(w);
     printf("chave criada");
+    return arv;
 }
 
 
