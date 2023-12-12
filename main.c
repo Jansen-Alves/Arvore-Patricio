@@ -21,8 +21,7 @@ void menu(NO *arv){
             scanf("%s", chave);
             n = strlen(chave);
             printf("tamanho da chave %d \n", n);
-            inserirpat(arv, chave, n);
-
+            arv = inserirpat(arv, chave, n);
             //printf("fechando arquivos e ponteiros");
             break;
         case (2):
@@ -35,6 +34,7 @@ void menu(NO *arv){
         case (3):
             printf("Digite a chave do cliente que você quer buscar:\n");
             scanf("%s", chave);
+            n = strlen(chave);
             novo = buscapat(arv, chave, n);
 
             if(novo->chave != chave){
@@ -59,7 +59,7 @@ void menu(NO *arv){
 
 int main(){
     NO *arv;
-    arv = criarNOh("null", 1, NULL, NULL, NULL, -1);
+    arv = criarNOh("null", 0, NULL, NULL, NULL, -1);
     menu(arv);
     return 0;
 }
