@@ -100,13 +100,16 @@ int maiorprefixo(char* NOmeA, char* NOmeB){
 }
 
 NO *buscapat(NO* arv, char* x, int n){
-    NO *NOvo = arv;
+    NO *novo = arv;
     int chave, i, a = 0;
-
-
+    printf("chave raiz %s \n", novo->chave);
+    printf("chave esquerda da raiz %s\n", novo->esq);
+    printf("chave direita da raiz %s\n", novo->dir);
+    printf("busca iniciada\n");
     while(a == 0){
-      if(NOvo->folha == 1){
-        chave = atoi(NOvo->chave);
+      if(novo->folha == 1){
+        chave = atoi(novo->chave);
+        printf("chave int %d\n", chave);
         if(chave == x){
           a = 1;
         }
@@ -114,28 +117,31 @@ NO *buscapat(NO* arv, char* x, int n){
         a = 2;
       }
     }
-      i = NOvo->reg;
+      i = novo->reg;
+      printf("reg %d e tamanho igual a  %d\n", i, n);
+      i = i-1;
       if (i<=n){
-        if(NOvo->chave[i] == 0){
-          NOvo = NOvo->esq;
+        printf("entrou no if com i igual a %d \n", i);
+        printf("chave na posicao i eh igual a %c", x[i]);
+        if(x[i] == "0"){
+          novo = novo->esq;
+          printf("Foi para esquerda\n");
       }
-        else if(NOvo->chave[i] == 1){
-          NOvo = NOvo->dir;
-    }else{
-        a = 2;
-          }
+        else if(x[i] == "1"){
+          novo = novo->dir;
+          printf("Foi para direita\n");
   }
       else{
         a = 2;
     }
 }
   if(a==1){
-    printf("Nó com chave %s encontrado\n", NOvo->chave);
+    printf("Nó com chave %s encontrado\n", novo->chave);
   }
   else{
     printf("chave não encontrada, retorno do ultimo nó do caminho feito pela busca\n");
   }
-  return NOvo;
+  return novo;
 }
 
 NO* inserirpat(NO* arv, char* x, int n){
@@ -185,8 +191,8 @@ NO* inserirpat(NO* arv, char* x, int n){
             return -1;
         }
         z = yf->pai;
-        if(z->reg > l+1){
-            while(z->pai->reg > l+1){
+        if(z->reg > l){
+            while(z->pai->reg > l){
             z = z->pai;
           }
         }else{
@@ -201,12 +207,12 @@ NO* inserirpat(NO* arv, char* x, int n){
     printf("criando noh w");
     if(z->folha >= 0){
         if(x[l+1] == 0){
-          v = criarNOh(NULL, l+1, z->pai, w, z, 0);
+          v = criarNOh(NULL, l, z->pai, w, z, 0);
           v->pai = z->pai;
           v->esq = w;
           v->dir = z;
         }else{
-          v = criarNOh(NULL, l+1, z->pai, z, w, 0);
+          v = criarNOh(NULL, l, z->pai, z, w, 0);
           v->pai = z->pai;
           v->esq = z;
           v->dir = w;
@@ -216,10 +222,10 @@ NO* inserirpat(NO* arv, char* x, int n){
     }else{
         printf("criando filhos da raiz\n");
         if(x[l] == 0){
-          v = criarNOh("nll", l+1, NULL, w, NULL, -1);
+          v = criarNOh("nll", l, NULL, w, NULL, -1);
           v->esq = w;
         }else{
-          v = criarNOh("nill", l+1, NULL, NULL, w, -1);
+          v = criarNOh("nill", l, NULL, NULL, w, -1);
           v->dir = w;
     }
         w->pai = v;
