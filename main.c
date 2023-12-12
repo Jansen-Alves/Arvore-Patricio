@@ -56,8 +56,8 @@ void menu(NO *arv){
 
 
 int main(){
-  NO *arv = (NO *)malloc(sizeof(NO));
+    NO *arv;
     arv = criarNOh(NULL, 1, NULL, NULL, NULL, -1);
-  menu(arv);
-  return 0;
+    menu(arv);
+    return 0;
 }

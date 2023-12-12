@@ -6,7 +6,16 @@
 
 NO *criarNOh(char * chave, int reg, NO*pai, NO*esquerdo, NO*direito, int val){
     NO *NOvo = (NO *)malloc(sizeof(NO));
-    if (NOvo) {
+    if (val == -1){
+        strcpy(NOvo->chave, chave);
+        NOvo->reg = reg;
+        NOvo->pai = NULL;
+        NOvo->esq = NULL;
+        NOvo->dir = NULL;
+        NOvo->folha = val;
+        NOvo->chave = NULL;
+        printf("\n> NOvo cliente criado\n");
+    } else {
         strcpy(NOvo->chave, chave);
         NOvo->reg = reg;
         NOvo->pai = pai;
@@ -15,8 +24,10 @@ NO *criarNOh(char * chave, int reg, NO*pai, NO*esquerdo, NO*direito, int val){
         NOvo->folha = val;
         printf("\n> NOvo cliente criado\n");
     }
-    return NOvo;
+
+  return NOvo;
 }
+
 void ajeitarArv(NO* folha){
     int k, val, lvl, lado;
     NO* z;
