@@ -4,24 +4,24 @@
 #include "noh.h"
 
 
-No *criarNoh(char * chave, char *reg, No*pai, No*esquerdo, No*direito, int val){
-    No *novo = (No *)malloc(sizeof(No));
-    if (novo) {
-        strcpy(novo->chave, chave)
-        novo->reg = reg;
-        novo->pai = pai;
-        novo->esq = esquerdo;
-        novo->dir = direito;
-        novo->folha = val;
-        printf("\n> Novo cliente criado\n");
+NO *criarNOh(char * chave, int reg, NO*pai, NO*esquerdo, NO*direito, int val){
+    NO *NOvo = (NO *)malloc(sizeof(NO));
+    if (NOvo) {
+        strcpy(NOvo->chave, chave);
+        NOvo->reg = reg;
+        NOvo->pai = pai;
+        NOvo->esq = esquerdo;
+        NOvo->dir = direito;
+        NOvo->folha = val;
+        printf("\n> NOvo cliente criado\n");
     }
-    return novo;
+    return NOvo;
 }
-void ajeitarArv(No* folha){
+void ajeitarArv(NO* folha){
     int k, val, lvl, lado;
-    No* z;
-    No* v1;
-    No* sweep;
+    NO* z;
+    NO* v1;
+    NO* sweep;
     
     val = 0;
     k = 1;
@@ -37,9 +37,11 @@ void ajeitarArv(No* folha){
             while(val == 0){
                 z = z->pai; // começa pelo avo da folha
                 if(z->esq == NULL || z->dir == NULL){ //verifica se tem ziguezague
-                    else if(z->pai->esq == NULL || z->pai->dir == NULL){
+
+                    if(z->pai->esq == NULL || z->pai->dir == NULL){
                         k++;
-                    }else{
+                    }
+                    else{
                         v1 = z;
                         while(v1->folha != -1){
                             lvl++;
@@ -81,22 +83,23 @@ void ajeitarArv(No* folha){
     }
     
 }
-int maiorprefixo(char* nomeA, char* nomeB){
+
+int maiorprefixo(char* NOmeA, char* NOmeB){
     int i =0;
-    while(nomeA[i] == nomeB[i]){
+    while(NOmeA[i] == NOmeB[i]){
         i++;
     }
     return i;
 }
 
-No *buscapat(No* arv, char* x, int n){
-    No *novo = arv;
+NO *buscapat(NO* arv, char* x, int n){
+    NO *NOvo = arv;
     int chave, i, a = 0;
     
 
     while(a == 0){
-      if(novo->folha == 1){
-        chave = atoi(novo.chave);
+      if(NOvo->folha == 1){
+        chave = atoi(NOvo->chave);
         if(chave == x){
           a = 1;
         }
@@ -104,13 +107,13 @@ No *buscapat(No* arv, char* x, int n){
         a = 2;
       }
     }
-      i = novo->reg;
+      i = NOvo->reg;
       if (i<=n){
-        if(novo->chave[i] == 0){
-          novo = novo->esq;
+        if(NOvo->chave[i] == 0){
+          NOvo = NOvo->esq;
       }
-        else if(novo->chave[i] == 1){
-          novo = novo->dir;   
+        else if(NOvo->chave[i] == 1){
+          NOvo = NOvo->dir;   
     }else{
         a = 2;  
           }
@@ -120,21 +123,21 @@ No *buscapat(No* arv, char* x, int n){
     }
 }
   if(a==1){
-    printf("Nó com chave", %s, "encontrado\n");
+    printf("Nó com chave %s encontrado\n", NOvo->chave);
   }
   else{
-    printf("chave não encontrada, retorno do ultimo nó do caminho feito pela busca");
+    printf("chave não encontrada, retorNO do ultimo nó do caminho feito pela busca");
   }
-  return novo;
+  return NOvo;
 } 
 
-void inserirpat(No* arv, char* x, int n){
+int inserirpat(NO* arv, char* x, int n){
   int T, l, c, reg_w;
-  No* z;
-  No* w;
-  No* v;
-  No* yf;
-  No* pr;
+  NO* z;
+  NO* w;
+  NO* v;
+  NO* yf;
+  NO* pr;
   pr = buscapat(arv, x, n);
   if(pr->chave == x){
     printf("Inserção invalida, chave já existente");
@@ -153,7 +156,7 @@ void inserirpat(No* arv, char* x, int n){
     yf = pr;
   }
     if(yf->folha == 1){
-        c = strlen(yf.chave);
+        c = strlen(yf->chave);
         l = maiorprefixo(yf->chave, x);
     if(l == strlen(x) || l == c){
         printf("Inserção inválida. Uma chave é prefixa de outra");
@@ -162,167 +165,40 @@ void inserirpat(No* arv, char* x, int n){
     z = yf->pai;
     if(z->reg> l+1){
         while(z->pai->reg > l+1){
-            z = z.pai;
+            z = z->pai;
           }
     }else{
-        z = ptf;
+        z = yf;
     }
     }else if(yf->folha == - 1){
-        z = yf
+        z = yf;
     }
     reg_w = atoi(x);
-    w = criarNoh(x, reg_w, NULL,NULL,NULL, 1);
+    w = criarNOh(x, reg_w, NULL,NULL,NULL, 1);
     if(z->folha > 0){
         if(x[l+1] == 0){
-          v = criarNOH(NULL, l+1, z.pai, w, z, 0);
+          v = criarNOh(NULL, l+1, z->pai, w, z, 0);
         }else{
-          v = criarNOH(NULL, l+1, z.pai, z, w, 0);
+          v = criarNOh(NULL, l+1, z->pai, z, w, 0);
         }
-        z.pai = v;
-        w.pai = v;
+        z->pai = v;
+        w->pai = v;
     }else{
         if(x[l+1] == 0){
-          v = criarNOH(NULL, l+1, z.pai, w, NULL, -1);
+          v = criarNOh(NULL, l+1, z->pai, w, NULL, -1);
         }else{
-          v = criarNOH(NULL, l+1, z.pai, NULL, w, -1);
+          v = criarNOh(NULL, l+1, z->pai, NULL, w, -1);
     }
         arv = v;
         free(z);
     }
     ajeitarArv(w);
     printf("chave criada");
-  }
-
-
-void deletar(FILE *hash, FILE *meta, FILE *clientes, int chave){
-    int validade = 0, proximo;
-    int posicao = chave % TAMANHO_HASH;
-    Cliente *atual = (Cliente *)malloc(sizeof(Cliente));
-    rewind(hash);
-
-    fseek(hash, sizeof(int) * (posicao), SEEK_SET);
-
-    fread(&posicao, sizeof(int), 1, hash);
-    //printf("%d", posicao);
-    printf("\n> Procurando cliente...\n");
-    if (posicao != -1) {
-        while (validade == 0) {
-            rewind(clientes);
-            fseek(clientes, sizeof(Cliente) * posicao, SEEK_SET);
-            fread(&atual->chave, sizeof(int), 1, clientes);
-            fread(atual->nome, sizeof(char), sizeof(atual->nome), clientes);
-            fread(&atual->estado, sizeof(int), 1, clientes);
-            fread(&atual->prox, sizeof(int), 1, clientes);
-            //printf("\nteste");
-            if (atual->chave == chave) {
-                validade = 1;
-                atual->chave = -1;
-                strcpy(atual->nome, "----");
-                atual->estado = 0;
-                proximo = atual->prox;
-                rewind(clientes);
-                fseek(clientes, sizeof(Cliente) * posicao, SEEK_SET);
-
-                fwrite(&atual->chave, sizeof(int), 1, clientes);
-                fwrite(atual->nome, sizeof(char), sizeof(atual->nome), clientes);
-                fwrite(&atual->estado, sizeof(int), 1, clientes);
-
-                printf("\nCliente deletado com sucesso!\n");
-                return;
-            } else if (atual->prox == -1) {
-                validade = -1;
-                printf("Cliente não encontrado, por favor insira ele na Hash primeiro.\n");
-                break;
-            } else {
-                posicao = atual->prox;
-            }
-        }
-    } else {
-        printf("Cliente não existe, por favor insira ele na Hash primeiro\n");
-    }
-    free(atual);
 }
 
-void lerarqs(FILE *tabhash, FILE *meta){
-    int contador;
-    int b;
-    rewind(tabhash);
-    printf("\n");
-    for (int i = 0; i < TAMANHO_HASH; i++) {
-        fread(&b, sizeof(int), 1, tabhash);
-        printf("hash %d: %d \n", i, b);
-    }
-    rewind(meta);
-    fread(&contador, sizeof(int), 1, meta);
-    printf("Contador: %d", contador);
-}
 
-void zerar(FILE *tabhash, FILE *meta, FILE *clientes){
-    FILE *nhash;
-    FILE *nmeta;
-    FILE *nclientes;
-    int contador = 0;
-    int novo;
-    int a = -1;
-    int b;
-
-    fclose(tabhash);
-    fclose(meta);
-
-    if ((nhash = fopen(TABELA_HASH, "wb")) == NULL) {
-        printf("Erro ao abrir o arquivo da tabela hash\n");
-        exit(1);
-    }
-
-    if ((nmeta = fopen(METADADOS, "wb")) == NULL) {
-        printf("Erro ao abrir o arquivo da tabela meta\n");
-        exit(1);
-    }
+/*void deletar(FILE *hash, FILE *meta, FILE *clientes, int chave){
+    
+}*/
 
 
-    for (int i = 0; i < TAMANHO_HASH; i++) {
-        fwrite(&a, sizeof(int), 1, nhash);
-    }
-    fclose(nhash);
-
-    if ((nhash = fopen(TABELA_HASH, "a+ b")) == NULL) {
-        printf("Erro ao abrir o arquivo da tabela clientes\n");
-        exit(1);
-    }
-
-    rewind(nhash);
-
-    /*for (int i = 0; i < TAMANHO_HASH; i++) {
-        fread(&b, sizeof(int), 1, nhash);
-        printf("hash: %d \n", b);
-    }*/
-
-    printf("\n> Arquivo hash zerado\n");
-
-    rewind(nmeta);
-    fwrite(&contador, sizeof(int), 1, nmeta);
-
-    fclose(nmeta);
-
-    if ((nmeta = fopen(METADADOS, "a+b")) == NULL) {
-        printf("Erro ao abrir o arquivo da tabela meta\n");
-        exit(1);
-    }
-
-    rewind(nmeta);
-
-    fread(&novo, sizeof(int), 1 ,nmeta);
-    printf("> Contador: %d\n", novo);
-    printf("> Tabela Clientes zerada\n");
-    printf("Arquivos zerados com sucesso!");
-    fclose(clientes);
-
-    if ((nclientes = fopen(REGISTRO_CLIENTE, "w+b")) == NULL) {
-        printf("Erro ao abrir o arquivo da tabela clientes\n");
-        exit(1);
-    }
-    fclose(nclientes);
-    fclose(nhash);
-    fclose(nmeta);
-
-}

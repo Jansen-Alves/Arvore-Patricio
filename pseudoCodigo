@@ -1,4 +1,4 @@
-Busca(No* raiz, chave, int N)
+/*Busca(No* raiz, chave, int N)
 pt = raiz
 a = 0
 enquanto a == 0 faça
@@ -51,4 +51,4 @@ se nao
  v = criarNOH(NULL, l+1, z.pai, z, w, 0);
 
 z.pai = v;
-w.pai = v;
+w.pai = v;*/

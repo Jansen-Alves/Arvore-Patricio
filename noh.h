@@ -4,9 +4,9 @@
 typedef struct NO{
     char * chave;
     int reg;
-    NO* pai;
-    NO* esq;
-    NO* dir;
+    struct NO* pai;
+    struct NO* esq;
+    struct NO* dir;
     int folha;
 }NO;
 

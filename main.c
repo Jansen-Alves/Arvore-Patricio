@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Noh.h"
+#include "noh.h"
 #include "nopatricio.h"
-void menu(FILE *meta, FILE *clientes, int modo){
-    int escolha, n, 
+
+
+void menu(NO *arv){
+    int escolha, n; 
     char chave[20];
-    Cliente *novo;
+    NO *novo;
 
     while(1){
         printf("\n-------------Menu-------------\n 1 - Inserção \n 2 - Deletar \n 3 - Busca \n 4- Sair \n -----------------------------");
@@ -15,7 +17,7 @@ void menu(FILE *meta, FILE *clientes, int modo){
         {
         case (1) :
             printf("Digite o número da chave do cliente que você deseja inserir: \n");
-            scanf("%s", &chave);
+            scanf("%s", chave);
             n = strlen(chave);
             inserirpat(arv, chave, n);
           
@@ -23,15 +25,15 @@ void menu(FILE *meta, FILE *clientes, int modo){
             break;
         case (2):
             printf("Digite a chave do cliente que você quer deletar:\n");
-            scanf("%s", &chave);
+            scanf("%s", chave);
             n = strlen(chave);
-            deletarpav(arv, chave, n);
+            //deletarpav(arv, chave, n);
             free(novo);
             break;
         case (3):
             printf("Digite a chave do cliente que você quer buscar:\n");
-            scanf("%s", &chave);
-            novo = buscarnog(arv, chave, n);
+            scanf("%s", chave);
+            novo = buscapat(arv, chave, n);
 
             if(novo->chave != chave){
                 printf("Noh não encontrado, busca se encerrou num nó folha incorreto ou num nó interno");
@@ -41,7 +43,7 @@ void menu(FILE *meta, FILE *clientes, int modo){
             }
             break;
         case (5):
-            free(cliente)
+            free(novo);
             exit(1);
             break;
         default:
@@ -51,9 +53,11 @@ void menu(FILE *meta, FILE *clientes, int modo){
     }
     
 }
+
+
 int main(){
-  No *arv = (No *)malloc(sizeof(No));
-    arv = criarNoH(NULL, 1, NULL, NULL, NULL, -1);
+  NO *arv = (NO *)malloc(sizeof(NO));
+    arv = criarNOh(NULL, 1, NULL, NULL, NULL, -1);
   menu(arv);
   return 0;
 }
